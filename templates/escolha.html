@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Cartas DBZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/menu.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="pontos-restantes">PONTOS RESTANTES: <span>24</span></div>
+            <div class="ki-bar">
+                <div class="ki-energy" style="width: 100%"></div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('personagens')">PERSONAGENS</button>
+            <button class="tab-button" onclick="openTab('itens')">ITENS</button>
+        </div>
+        
+        <div id="personagens-tab" class="tab-content active">
+            <div class="cartas-container"></div>
+        </div>
+        
+        <div id="itens-tab" class="tab-content">
+            <div class="itens-container"></div>
+        </div>
+        
+        <div id="zoom-container">
+            <div class="zoom-overlay"></div>
+            <div class="zoom-content">
+                <button id="fechar-zoom" onclick="fecharZoom()">✕</button>
+                <div class="zoom-card">
+                    <img id="carta-selecionada" src="" alt="Carta Selecionada">
+                    <div class="zoom-effects"></div>
+                </div>
+                <button id="selecionar-carta" onclick="selecionarCarta()">SELECIONAR</button>
+            </div>
+        </div>
+        
+        <button id="enviar-cartas" class="fight-button">ENVIAR TIME</button>
+    </div>
+    
+    <script src="../static/scripts/menu.js"></script>
+</body>
+</html>

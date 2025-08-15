@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Completo - DBZ Card Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/fulldeck.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>SEU TIME DE COMBATE</h1>
+
+        <div class="deck-section">
+            <h2>PERSONAGENS</h2>
+            <div class="cartas-selecionadas-container"></div>
+        </div>
+
+        <div class="deck-section">
+            <h2>ITENS</h2>
+            <div class="itens-selecionados-container"></div>
+        </div>
+        <div class="button-container"> <button class="voltar-button">
+                <a href="/jogar">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </button>
+            <button id="lutar" class="fight-button">Lutar</button>
+        </div>
+    </div>
+
+
+    <!-- Adicione esta parte para o zoom -->
+    <div id="zoom-container">
+        <div class="zoom-overlay"></div>
+        <div class="zoom-content">
+            <button id="fechar-zoom">✕</button>
+            <div class="zoom-card">
+                <img id="carta-selecionada" src="" alt="Carta Selecionada">
+                <div class="zoom-effects"></div>
+            </div>
+            <div id="info-carta">
+                <h3 id="nome-carta"></h3>
+                <p id="tipo-carta"></p>
+                <p id="valor-carta"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/scripts/fulldeck.js"></script>
+</body>
+
+</html>

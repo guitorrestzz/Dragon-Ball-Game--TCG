@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - DBZ Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/styles/configs.css">
+</head>
+
+<body class="normal-theme">
+    <div class="scouter-overlay"></div>
+    <div class="container">
+        <div class="scouter-display">
+            <h1>
+                <img src="../static/assets/images/scouter.png" class="scouter-title-icon">
+                CONFIGURAÇÕES
+            </h1>
+
+            <!-- Seção de Áudio -->
+            <div class="config-section audio-section">
+                <h2><i class="fas fa-volume-up"></i> CONFIGURAÇÕES DE ÁUDIO</h2>
+
+                <!-- Botão Liga/Desliga -->
+                <div class="scouter-switch">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-sound" checked>
+                        <span class="slider">
+                            <span class="scouter-lens"></span>
+                        </span>
+                    </label>
+                    <span id="sound-status">SOM: LIGADO</span>
+                </div>
+
+                <!-- Medidor de Volume -->
+                <div class="power-level-container">
+                    <div class="power-level-display">
+                        <span class="power-level">POWER LEVEL: <span id="db-volume-value">70</span>%</span>
+                        <div class="power-bar">
+                            <div class="power-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <input type="range" id="db-volume" min="0" max="100" value="70" class="db-volume-slider">
+                </div>
+
+                <!-- Seletor de Músicas -->
+                <div class="music-options">
+                    <div class="music-option selected" data-song="sorriso.mp3">
+                        <i class="fas fa-dragon"></i>
+                        <span>Sorriso Resplandecente</span>
+                        <button class="preview-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="music-option" data-song="cha-la.mp3">
+                        <i class="fas fa-bolt"></i>
+                        <span>Cha-La Head-Cha-La</span>
+                        <button class="preview-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="music-option" data-song="classico.mp3">
+                        <i class="fas fa-bolt"></i>
+                        <span>Clássico</span>
+                        <button class="preview-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                </div>
+                <div id="easter-egg-music" class="music-option hidden" data-song="tauz.mp3">
+                    <i class="fas fa-star"></i>
+                    <span>Música Secreta</span>
+                    <button class="preview-btn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+            <!-- Botão Voltar -->
+            <button id="voltar-config" class="fight-button" onclick="location.href='/'">
+                <i class="fas fa-arrow-left"></i> VOLTAR
+            </button>
+        </div>
+    </div>
+
+    <!-- Elementos de Áudio -->
+    <audio id="bg-music" loop></audio>
+    <audio id="ui-sound" src="../static/assets/sounds/scouter-beep.mp3"></audio>
+
+    <script src="../static/scripts/configs.js"></script>
+</body>
+
+</html>

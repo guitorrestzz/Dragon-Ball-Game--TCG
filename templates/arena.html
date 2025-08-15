@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Card Game</title>
+    <link rel="stylesheet" href="/static/styles/arena.css">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<!-- Sistema de Notificações -->
+<div id="notification-system" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  max-width: 90%;
+  z-index: 10000;
+">
+    <!-- As notificações serão injetadas aqui dinamicamente -->
+</div>
+
+<body>
+    <div id="game-container">
+        <!-- Informações do Turno -->
+
+        <div class="tela1">
+            <!-- Área do Jogador 1 -->
+            <div class="player-area1" id="player1-area">
+                <div class="player-area" id="player1-area">
+                    <!-- ... resto do conteúdo ... -->
+                </div>
+
+
+                <div class="imagem-grande">
+
+                    <div class="imagem-fundo">
+                        <div class="bench" id="banco-cartas">
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="ajuste-baralho">
+
+                    <div id="baralho-wrapper" onclick="abrirMenuOpcoesBaralho()" title="Clique para ações">
+                        <div class="carta camada1"></div>
+                        <div class="carta camada2"></div>
+                        <div class="carta camada3"></div>
+                    </div>
+                </div>
+
+
+                <div class="hand">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Área do Campo de Batalha -->
+    <div id="battlefield">
+
+         <div id="controls">
+            <button id="end-turn" class="button-finalizar">Finalizar Turno</button>
+        </div>
+
+        <div class="active-card" id="player1-card">
+            <div id="info-carta">
+                <h2 class="nome-carta" id="nome-carta">Nome: </h2>
+                <p class="vida-carta" id="vida-carta">Vida: </p>
+                <p class="ki-carta" id="ki-carta">Ki: </p>
+            </div>
+        </div>
+
+        <div class="esfera">
+            <img src="/static/assets/esfera.png" alt="" style="z-index: 2;" width="250px;">
+        </div>
+
+        <div class="active-card" id="player2-card">
+            <div id="info-carta">
+                <h2 class="nome-carta" id="nome-carta">Nome: </h2>
+                <p class="vida-carta" id="vida-carta">Vida: </p>
+                <p class="ki-carta" id="ki-carta">Ki: </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tela2">
+
+        <!-- Área do Jogador 2 -->
+        <div class="player-area2" id="player2-area">
+            <div class="ajuste-baralho">
+
+                <div id="baralho-wrapper" onclick="abrirMenuOpcoesBaralho2()" title="Clique para ações">
+                    <div class="carta camada1"></div>
+                    <div class="carta camada2"></div>
+                    <div class="carta camada3"></div>
+                    <div class="carta camada4"></div>
+                    <div class="carta camada5"></div>
+                    <div class="carta camada6"></div>
+                    <div class="carta camada7"></div>
+                </div>
+            </div>
+            <div class="imagem-grande-black">
+                <div class="imagem-fundo-black">
+                    <div class="bench2" id="banco-cartas-jogador2">
+
+                    </div>
+                </div>
+            
+            </div>
+            <div class="hand">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="fadeTela"></div>
+
+    <div id="animacaoFinal">
+        <video id="videoAnimacao" autoplay playsinline></video>
+    </div>
+    <script src="/static/scripts/arena.js"></script>
+</body>
+<!-- Fundo escurecido e modal da carta ampliada -->
+<div id="overlay" style="display: none; position: fixed; top: 0; left: 0; 
+width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 9998;" onclick="fecharCarta()"></div>
+
+<div id="carta-ampliada" style="
+  display: none; 
+  position: fixed; 
+  top: 50%; left: 50%; 
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #1f1f1f, #2a2a2a); 
+  color: #fff; 
+  padding: 30px; 
+  border: 5px solid gold; 
+  border-radius: 20px; 
+  z-index: 9999; 
+  width: 500px; 
+  max-width: 90vw;
+  box-shadow: 0 0 30px gold;
+">
+    <button onclick="fecharCarta()" style="
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    background: red; 
+    color: white; 
+    border: none; 
+    font-size: 18px; 
+    padding: 5px 10px; 
+    cursor: pointer;
+    border-radius: 5px;
+  ">X</button>
+    <div id="conteudo-ampliado"></div>
+</div>
+<!-- Modal de Confirmação de Ataque -->
+<div id="confirmacao-ataque" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  padding: 25px;
+  border-radius: 10px;
+  border: 2px solid #f0c000;
+  z-index: 10000;
+  width: 350px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(240, 192, 0, 0.5);
+">
+    <h3 id="texto-confirmacao" style="margin-top: 0; color: #fff;">Atacar com Kamehameha?</h3>
+    <p id="detalhes-golpe" style="color: #ccc;">Dano: 400 | Custo: 4000 KI</p>
+
+    <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+        <button id="btn-confirmar" style="
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    ">Sim</button>
+
+        <button id="btn-cancelar" style="
+      background: #f44336;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    ">Não</button>
+    </div>
+</div>
+
+</html>

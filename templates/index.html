@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball TCG</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos do ícone de som */
+        .sound-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+            color: #ffcc00;
+            text-shadow: 0 0 5px #ff0000;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Container principal alinhado à esquerda */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* Alinha itens à esquerda */
+            justify-content: center;
+            height: 100vh;
+            gap: 30px;
+            padding-left: 50px;
+            /* Adiciona padding à esquerda */
+            margin-right: auto;
+            /* Empurra para a esquerda */
+        }
+
+        /* Estilos dos botões */
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.3s ease;
+            margin-left: 0;
+            /* Remove margens */
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-btn img {
+            width: 250px;
+            height: auto;
+        }
+
+        /* Estilo do logo */
+        .logo {
+            width: 400px;
+            height: auto;
+            margin-bottom: 40px;
+            margin-left: 0;
+            /* Remove margens */
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-2 {
+            animation-delay: 1s;
+        }
+
+        .delay-3 {
+            animation-delay: 1.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ícone de controle de som -->
+    <div class="sound-icon fade-in">
+        <i class="fas fa-volume-up"></i>
+    </div>
+
+    <!-- Elemento de áudio -->
+    <audio id="bg-music" loop></audio>
+
+    <!-- Container principal alinhado à esquerda -->
+    <div class="main-container">
+        <!-- Logo -->
+        <img class="logo fade-in" src="../static/assets/titulo.png" alt="Dragon Ball TCG Logo">
+
+        <!-- Botão Jogar -->
+        <button class="menu-btn fade-in delay-1" id="jogar-btn">
+            <img src="../static/assets/jogar-14-03-2025.png" alt="Jogar">
+        </button>
+
+        <!-- Botão Configurações -->
+        <button class="menu-btn fade-in delay-2" id="configs-btn">
+            <img src="../static/assets/-configs-14-03-2025.png" alt="Configurações">
+        </button>
+
+        <button class="menu-btn fade-in delay-2" id="tutorial-btn">
+            <img src="../static/assets/tutorial/tutorial.png" alt="Tutorial">
+        </button>
+    </div>
+
+    <script>
+        // Sistema de música
+        document.addEventListener('DOMContentLoaded', () => {
+            // Carrega as configurações salvas
+            const savedConfigs = localStorage.getItem('dbzConfigs');
+            const configs = savedConfigs ? JSON.parse(savedConfigs) : {
+                soundEnabled: true,
+                volume: 70,
+                musicPlaying: true,
+                currentSong: 'sorriso.mp3'
+            };
+
+            // Elementos DOM
+            const bgMusic = document.getElementById('bg-music');
+            const soundIcon = document.querySelector('.sound-icon i');
+
+            // Configura a música
+            function setupMusic() {
+                bgMusic.src = `../static/assets/sounds/${configs.currentSong}`;
+                bgMusic.volume = configs.volume / 100;
+
+                if (configs.soundEnabled && configs.musicPlaying) {
+                    bgMusic.play().catch(e => {
+                        // Fallback para autoplay bloqueado
+                        const playOnInteraction = () => {
+                            bgMusic.play();
+                            document.removeEventListener('click', playOnInteraction);
+                        };
+                        document.addEventListener('click', playOnInteraction);
+                    });
+                }
+
+                soundIcon.className = configs.soundEnabled ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+            }
+
+            // Controle do ícone de som
+            document.querySelector('.sound-icon').addEventListener('click', () => {
+                configs.soundEnabled = !configs.soundEnabled;
+                configs.musicPlaying = configs.soundEnabled;
+
+                soundIcon.className = configs.soundEnabled ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+
+                if (configs.soundEnabled) {
+                    bgMusic.play();
+                } else {
+                    bgMusic.pause();
+                }
+
+                localStorage.setItem('dbzConfigs', JSON.stringify(configs));
+            });
+
+            // Navegação
+            document.getElementById('jogar-btn').addEventListener('click', () => {
+                // Salva o estado antes de navegar
+                configs.musicPlaying = configs.soundEnabled;
+                localStorage.setItem('dbzConfigs', JSON.stringify(configs));
+                window.location.href = '/jogar';
+            });
+
+            document.getElementById('configs-btn').addEventListener('click', () => {
+                // Salva o estado antes de navegar
+                configs.musicPlaying = configs.soundEnabled;
+                localStorage.setItem('dbzConfigs', JSON.stringify(configs));
+                window.location.href = '/configs';
+            });
+            document.getElementById('tutorial-btn').addEventListener('click', () => {
+                // Salva o estado antes de navegar
+                configs.musicPlaying = configs.soundEnabled;
+                localStorage.setItem('dbzConfigs', JSON.stringify(configs));
+                window.location.href = '/tutorial';
+            });
+            // Inicializa
+            setupMusic();
+        });
+    </script>
+</body>
+
+</html>
