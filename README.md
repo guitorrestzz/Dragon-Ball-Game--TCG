@@ -4,7 +4,7 @@ Este repositório contém um jogo de cartas online baseado em "Pokemon TCG" com 
 
 # Demonstração Visual 🔎
 ![seleção](static/assets/cartas/selecao.png)
-![jogabilidade](static/assets/cartasjogo.png)
+![jogabilidade](static/assets/cartas/jogo.png)
 ![carta](static/assets/cartas/carta.png)
 
 # Tecnologias Utilizadas 💻
