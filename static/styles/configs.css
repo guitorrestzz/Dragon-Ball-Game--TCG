@@ -1,0 +1,321 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background: url('../static/assets/images/space-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: white;
+    overflow-x: hidden;
+}
+
+.scouter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 0, 0.03);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.scouter-display {
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px solid #FFD700;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+h1 {
+    text-align: center;
+    color: #FFD700;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.scouter-title-icon {
+    height: 40px;
+    filter: drop-shadow(0 0 5px #bc7b69);
+}
+
+.config-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 20, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.config-section h2 {
+    color: #FFD700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+/* Controles de Áudio */
+.scouter-switch {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #333;
+    transition: .4s;
+    border-radius: 20px;
+    border: 2px solid #FF0000;
+}
+
+.scouter-lens {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #ff0000;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+input:checked + .slider {
+    background-color: #111;
+}
+
+input:checked + .slider .scouter-lens {
+    transform: translateX(38px);
+    background-color: #FF0000;
+    box-shadow: 0 0 10px #FF0000;
+}
+
+#sound-status {
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    font-size: 1.1rem;
+}
+
+.power-level-container {
+    margin: 25px 0;
+}
+
+.power-level-display {
+    margin-bottom: 10px;
+}
+
+.power-level {
+    color: #FFD700;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.power-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.power-fill {
+    height: 100%;
+    background: linear-gradient(to right, #FF0000, #FFCC00);
+    border-radius: 8px;
+    transition: width 0.3s;
+}
+
+.db-volume-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+    margin-top: 15px;
+}
+
+.db-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #FFD700;
+    border-radius: 50%;
+    border: 2px solid #FF0000;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+/* Opções de Música */
+.music-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.music-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    border-left: 4px solid #333;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.music-option:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateX(5px);
+}
+
+.music-option.selected {
+    border-left: 4px solid #FFD700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.music-option i {
+    font-size: 1.2rem;
+    color: #FFD700;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.music-option span {
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.preview-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.preview-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Botão Voltar */
+.fight-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px auto 0;
+    padding: 12px 30px;
+    background: linear-gradient(to right, #FF0000, #990000);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 200px;
+}
+
+.fight-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px red;
+}
+
+.fight-button i {
+    font-size: 1rem;
+}
+
+/* Feedback visual para música pausada */
+.music-option.selected.paused {
+    opacity: 0.7;
+    border-left-color: #999;
+}
+
+.music-option.selected.paused i:first-child {
+    color: #999;
+}
+
+/* Animação no botão de play/pause */
+.preview-btn i {
+    transition: transform 0.2s;
+}
+
+.preview-btn:hover i {
+    transform: scale(1.2);
+}
+
+/* Estilo para a música secreta */
+.music-option.hidden {
+    display: none;
+}
+
+.music-option.secret {
+    background: rgba(255, 215, 0, 0.1);
+    border-left: 4px solid #FF00FF;
+}
+
+.music-option.secret i {
+    color: #FF00FF;
+}
+
+/* Efeito especial ao desbloquear */
+@keyframes unlock {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px #FF00FF; }
+    100% { transform: scale(1); }
+}
+
+.unlock-effect {
+    animation: unlock 1s;
+}
+
+
+@keyframes fadeOut {
+    to { opacity: 0; top: 0; }
+}

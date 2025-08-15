@@ -1,0 +1,361 @@
+:root {
+    --cor-primaria: #d72323;
+    --cor-secundaria: #f5ed00;
+    --cor-fundo: #1a1a2e;
+    --cor-texto: #ffffff;
+    --cor-destaque: #ff6b6b;
+    --cor-borda: #4a4a8a;
+    --cor-sombra: rgba(0, 0, 0, 0.7);
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: 'Rajdhani', sans-serif;
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--cor-secundaria);
+    text-shadow: 3px 3px 0 var(--cor-primaria),
+                -1px -1px 0 var(--cor-primaria);
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 300px;
+    height: 4px;
+    background: linear-gradient(to right, var(--cor-primaria), var(--cor-secundaria), var(--cor-primaria));
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 50px 0 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2::before, h2::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--cor-primaria), transparent);
+    margin: 0 15px;
+}
+
+.count {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    margin-left: 15px;
+    text-shadow: none;
+    box-shadow: 0 0 10px var(--cor-primaria);
+}
+
+.deck-section {
+    background-color: rgba(26, 26, 46, 0.8);
+    border-radius: 15px;
+    border: 3px solid var(--cor-primaria);
+    box-shadow: 0 0 40px rgba(215, 35, 35, 0.3);
+    margin-bottom: 50px;
+    padding: 20px;
+}
+
+.cartas-selecionadas-container, .itens-selecionados-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.carta-selecionada, .item-selecionado {
+    background: linear-gradient(145deg, #2a2a3e, #1e1e30);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+    border: 1px solid var(--cor-borda);
+    position: relative;
+    overflow: hidden;
+}
+
+.carta-selecionada:hover, .item-selecionado:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(245, 237, 0, 0.3);
+}
+
+.carta-selecionada img, .item-selecionado img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid var(--cor-borda);
+    transition: transform 0.3s ease;
+}
+
+.carta-selecionada:hover img, .item-selecionado:hover img {
+    transform: scale(1.1);
+}
+
+.carta-selecionada p, .item-selecionado p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    color: var(--cor-texto);
+    font-weight: 500;
+}
+
+.carta-selecionada::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--cor-primaria), var(--cor-secundaria));
+    border-radius: 5px 5px 0 0;
+    opacity: 0.8;
+}
+
+.item-selecionado::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, #4a4a8a, #7a7ac2);
+    border-radius: 5px 5px 0 0;
+    opacity: 0.8;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espaço entre os botões */
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+.fight-button, .voltar-button {
+    flex: 1; /* Faz os botões terem o mesmo tamanho */
+    max-width: 250px; /* Largura máxima para cada botão */
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 0 var(--shadow-color), 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    text-decoration: none; /* Remove sublinhado */
+    text-align: center;
+    display: inline-block; /* Para funcionar com âncoras */
+}
+
+.fight-button {
+    background: linear-gradient(to bottom, var(--cor-secundaria), #d4c900);
+    color: #000;
+    --shadow-color: #b3a800;
+    box-shadow: 0 5px 0 var(--shadow-color), 0 0 20px rgba(245, 237, 0, 0.5);
+}
+
+.voltar-button {
+    background: linear-gradient(to bottom, #ac2a2a, #dc1313);
+    color: #000000;
+    --shadow-color: #222;
+    box-shadow: 0 5px 0 var(--shadow-color), 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.voltar-button a {
+    color: black; /* Mantém a cor do texto do link */
+    text-decoration: none; /* Remove sublinhado do link */
+}
+
+.fight-button:hover {
+    background: linear-gradient(to bottom, #fff200, #e6d700);
+    box-shadow: 0 7px 0 #b3a800, 0 0 30px rgba(245, 237, 0, 0.7);
+    transform: translateY(-3px);
+}
+
+.voltar-button:hover {
+    background: linear-gradient(to bottom, #410404, #f30000);
+    box-shadow: 0 7px 0 #222, 0 0 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.fight-button:active, .voltar-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 var(--shadow-color);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .cartas-selecionadas-container, .itens-selecionados-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .carta-selecionada, .item-selecionado {
+        padding: 10px;
+    }
+    
+    .carta-selecionada img, .item-selecionado img {
+        height: 120px;
+    }
+}
+
+/* Estilos do Zoom */
+#zoom-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.zoom-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.zoom-content {
+    position: relative;
+    background: var(--cor-fundo);
+    padding: 30px;
+    border-radius: 10px;
+    border: 3px solid var(--cor-primaria);
+    box-shadow: 0 0 40px var(--cor-primaria);
+    max-width: 500px;
+    text-align: center;
+    z-index: 1001;
+    animation: zoomIn 0.3s ease;
+}
+
+.zoom-card {
+    position: relative;
+    margin: 20px 0;
+}
+
+#carta-selecionada {
+    max-height: 400px;
+    max-width: 100%;
+    border-radius: 5px;
+    border: 2px solid var(--cor-secundaria);
+    box-shadow: 0 0 20px rgba(245, 237, 0, 0.5);
+}
+
+.zoom-effects {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 10px;
+    background: radial-gradient(circle at center, rgba(245, 237, 0, 0.2) 0%, transparent 70%);
+    animation: aura 2s infinite alternate;
+}
+
+#fechar-zoom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background: var(--cor-primaria);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#fechar-zoom:hover {
+    transform: rotate(90deg) scale(1.1);
+    background: var(--cor-destaque);
+}
+
+#info-carta {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(26, 26, 46, 0.7);
+    border-radius: 8px;
+    border: 1px solid var(--cor-primaria);
+}
+
+#info-carta h3 {
+    color: var(--cor-secundaria);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+#info-carta p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+}
+
+.empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--cor-destaque);
+    font-size: 1.2rem;
+    padding: 20px;
+}

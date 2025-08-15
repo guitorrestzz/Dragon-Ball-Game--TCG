@@ -1,0 +1,289 @@
+@font-face {
+  font-family: "DragonBall Font";
+  src: url("../fonts/fonte-dbz.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* RESET E CONFIGURAÇÕES GERAIS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  background-image: url("../assets/tutorial/fundo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+}
+
+/* ESTRUTURA DAS SECTIONS */
+section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+/* CABEÇALHO DA SECTION */
+.section-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  width: min(500px, 80%);
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: "DragonBall Font", sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: #ffcc00;
+  text-shadow: 4px 4px 0 #ff0000;
+  margin: 10px 0;
+}
+
+/* LAYOUT IMAGEM + TEXTO */
+.content-container {
+  display: flex;
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 50px;
+  align-items: center;
+}
+
+.image-container {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+}
+
+.text-container {
+  flex: 1;
+  padding: 20px;
+  max-width: 600px;
+}
+
+/* ESTILOS DE TEXTO */
+.subtitle {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: white;
+  margin: 1.5rem 0;
+  font-family: "DragonBall Font", sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.text {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: white;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-family: Arial, sans-serif;
+}
+
+/* ELEMENTOS DE NAVEGAÇÃO */
+.nav-button {
+  position: fixed;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.back-button {
+  top: 30px;
+  left: 30px;
+  padding: 12px 25px;
+  background-color: rgba(0, 84, 180, 0.7);
+  color: white;
+  font-family: "DragonBall Font", sans-serif;
+  font-size: 1.5rem;
+  border: 3px solid #ffcc00;
+  border-radius: 10px;
+}
+
+.next-button {
+  bottom: 40px;
+  right: 40px;
+  font-size: 2.5rem;
+  color: white;
+  background: rgba(0, 84, 180, 0.7);
+  border: 3px solid #ffcc00;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background-color: #ffcc00;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.sound-icon {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  font-size: 1.8rem;
+  color: #ffcc00;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sound-icon:hover {
+  transform: scale(1.1);
+  background: rgba(0, 84, 180, 0.7);
+}
+
+.scroll-indicator {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.scroll-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.scroll-dot.active {
+  background-color: #ffcc00;
+  border-color: #ff0000;
+  transform: scale(1.3);
+}
+
+/* RESPONSIVIDADE PARA TELAS MENORES */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .image-container, 
+  .text-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+  }
+  
+  .nav-button {
+    font-size: 1.2rem;
+    padding: 8px 15px;
+  }
+  
+  .next-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+}
+
+.fight-button, .voltar-button {
+    flex: 1; /* Faz os botões terem o mesmo tamanho */
+    max-width: 250px; /* Largura máxima para cada botão */
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 0 var(--shadow-color), 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    text-decoration: none; /* Remove sublinhado */
+    text-align: center;
+    display: inline-block; /* Para funcionar com âncoras */
+}
+
+.fight-button {
+    background: linear-gradient(to bottom, var(--cor-secundaria), #d4c900);
+    color: #000;
+    --shadow-color: #b3a800;
+    box-shadow: 0 5px 0 var(--shadow-color), 0 0 20px rgba(245, 237, 0, 0.5);
+}
+
+.voltar-button {
+    background: linear-gradient(to bottom, #ac2a2a, #dc1313);
+    color: #000000;
+    --shadow-color: #222;
+    box-shadow: 0 5px 0 var(--shadow-color), 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.voltar-button a {
+    color: black; /* Mantém a cor do texto do link */
+    text-decoration: none; /* Remove sublinhado do link */
+}
+
+.fight-button:hover {
+    background: linear-gradient(to bottom, #fff200, #e6d700);
+    box-shadow: 0 7px 0 #b3a800, 0 0 30px rgba(245, 237, 0, 0.7);
+    transform: translateY(-3px);
+}
+
+.voltar-button:hover {
+    background: linear-gradient(to bottom, #410404, #f30000);
+    box-shadow: 0 7px 0 #222, 0 0 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.fight-button:active, .voltar-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 var(--shadow-color);
+}
+
