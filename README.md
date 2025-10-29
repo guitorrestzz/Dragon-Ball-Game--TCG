@@ -3,9 +3,10 @@
 Este repositório contém um jogo de cartas online baseado em "Pokemon TCG" com inspiração em personagens de "Dragon Ball". Construído permite jogabilidade e interação em tempo real através do **microframework Flask**
 
 # Demonstração Visual 🔎
-![seleção](./img/selecao.png)
-![jogabilidade](../img/jogo.png)
-![carta](../img/carta.png)
+![seleção](img/selecao.png)
+![jogabilidade](img/jogo.png)
+![carta](img/carta.png)
+
 
 # Tecnologias Utilizadas 💻
 - **HTML:** Estruturação do Jogo de Cartas
